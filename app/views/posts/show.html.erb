@@ -1,0 +1,14 @@
+<h2> <%= @post.title %> <%= link_to "(Edit)", edit_post_path(@post) %> </h2>
+
+<h4> <%= @post.author %> </h4>
+
+<p> <%= @post.content %> </p>
+
+<p> <% @post.comments.each do |comment| %>
+  <p>there is a comment here</p>
+  <%=@post.comments%>
+      <%= comment.title %>
+      <%= comment.author %>
+      <%= comment.content %>
+    <% end %>
+</p>

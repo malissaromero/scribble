@@ -1,0 +1,9 @@
+<h1>Comments <%= link_to "(Create)", new_comment_path %> </h1>
+
+<p>
+  <% @comments.each do |comment| %>
+    <%= comment.title %>
+    <%= comment.author %>
+    <%= comment.content %>
+  <% end %>
+</p>
