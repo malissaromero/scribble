@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate, only: [:index, :show]
 
   def index
     @posts = Post.all
     @comment = Comment.new
-    @posts = User.find(session[:user]["id"]).posts
+    #@posts = User.find(session[:user]["id"]).posts
   end
 
   def show
@@ -18,6 +19,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.create!(post_params.merge({user_id: session[:user]["id"]}))
     redirect_to post_path(@post)
+
+    #@post = Post.create(params[@post])
+    #@post.user = current_user
+    #@post.save
   end
 
   def edit
