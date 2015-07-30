@@ -2,8 +2,8 @@
 
 <p>
   <% @comments.each do |comment| %>
-    <%= comment.title %>
-    <%= comment.author %>
-    <%= comment.content %>
+    <p> <%= link_to "#{comment.title}", comment %> </p>
+    <p> <%= comment.author %> </p>
+    <p> <%= comment.content %> </p>
   <% end %>
 </p>

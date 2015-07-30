@@ -5,10 +5,8 @@
 <p> <%= @post.content %> </p>
 
 <p> <% @post.comments.each do |comment| %>
-  <p>there is a comment here</p>
-  <%=@post.comments%>
-      <%= comment.title %>
-      <%= comment.author %>
-      <%= comment.content %>
+    <p> <%= link_to "#{comment.title}", post_comment_path(@post, comment) %> </p>
+    <p>  <%= comment.author %> </p>
+    <p>  <%= comment.content %> </p>
     <% end %>
 </p>
