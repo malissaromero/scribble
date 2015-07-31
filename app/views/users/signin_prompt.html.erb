@@ -1,3 +1,5 @@
+<h1> <%= link_to "Home", posts_path %>
+
 <h2> <%= flash[:sign_in_message] %> </h2>
 <%= form_tag("/signin", method: "post") do %>
   <input type="text" name="username" placeholder="username" value="<%= cookies[:username] %>" />

@@ -1,10 +1,12 @@
-<h1>Posts <%= link_to "(Create)", new_post_path %> </h1>
+<h1> <%= link_to "Home", posts_path %>
+    <%= link_to "Create New Post", new_post_path %>
+</h1>
 
-<p>
   <% @posts.each do |post| %>
-  <p> <%= link_to "#{post.title}", post_path(post) %> </p>
-  <p>  <%= post.author %> </p>
-  <p>  <%= post.content %> </p>
-  <p> <%= link_to "(Add Comment)", new_post_comment_path(post) %> </p>
+  <div>
+    <p> Post Title: <%= link_to "#{post.title}", post_path(post) %> </p>
+    <p> Author: <%= post.author %> </p>
+    <p> <%= post.content %> </p>
+    <p> <%= link_to "(Add Comment)", new_post_comment_path(post) %> </p>
+</div>
   <% end %>
-</p>

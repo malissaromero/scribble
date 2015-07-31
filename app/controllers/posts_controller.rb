@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate, only: [:index, :show]
+  skip_before_action :authenticate, only: [:index]
 
   def index
     @posts = Post.all
     @comment = Comment.new
-    #@posts = User.find(session[:user]["id"]).posts
   end
 
   def show
@@ -17,21 +16,21 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create!(post_params.merge({user_id: session[:user]["id"]}))
+    @post = Post.create(post_params)
+    @post.user_id = current_user["id"]
     redirect_to post_path(@post)
-
-    #@post = Post.create(params[@post])
-    #@post.user = current_user
-    #@post.save
   end
 
   def edit
     @post = Post.find(params[:id])
+    if @post.user_id != current_user["id"]
+       redirect_to post_path(@post)
+    end
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    @post.user_id = current_user["id"]
     redirect_to posts_path(@post)
   end
 

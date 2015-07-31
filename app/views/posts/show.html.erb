@@ -1,12 +1,19 @@
-<h2> <%= @post.title %> <%= link_to "(Edit)", edit_post_path(@post) %> </h2>
+<h1> <%= link_to "Back to Home", posts_path %> </h1>
 
-<h4> <%= @post.author %> </h4>
+<div>
+  <p> Post Title: <%= @post.title %>
+  <% if @post.user_id == current_user["id"] %>
+  <%= link_to "(Edit)", edit_post_path(@post) %>
+  <% end %>
+  </p>
+  <p> Author: <%= @post.author %> </p>
+  <p> <%= @post.content %> </p>
+</div>
 
-<p> <%= @post.content %> </p>
-
-<p> <% @post.comments.each do |comment| %>
-    <p> <%= link_to "#{comment.title}", post_comment_path(@post, comment) %> </p>
-    <p>  <%= comment.author %> </p>
+<% @post.comments.each do |comment| %>
+  <div>
+    <p> Comment Title: <%= link_to "#{comment.title}", post_comment_path(@post, comment) %> </p>
+    <p> Author: <%= comment.author %> </p>
     <p>  <%= comment.content %> </p>
-    <% end %>
-</p>
+  </div>
+<% end %>

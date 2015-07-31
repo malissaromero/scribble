@@ -1,5 +1,11 @@
-<h4> <%= @comment.title %> <%= link_to "(Edit)", edit_post_comment_path(@post, @comment) %> </h4>
+<h1> <%= link_to "Back to Home", posts_path %> </h1>
 
-<h4> <%= @comment.author %> </h4>
-
-<p> <%= @comment.content %> </p>
+<div>
+  <p> Comment Title: <%= @comment.title %>
+    <% if @comment.post.user_id == current_user["id"] %>
+    <%= link_to "(Edit)", edit_post_comment_path(@post, @comment) %>
+    <% end %>
+  </p>
+  <p> Author: <%= @comment.author %> </p>
+  <p> <%= @comment.content %> </p>
+</div>

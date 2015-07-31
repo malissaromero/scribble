@@ -28,7 +28,9 @@ class CommentsController < ApplicationController
   def update
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
-    @comment.update(comment_params)
+      if @comment.user_id != current_user["id"]
+        redirect_to post_path(@post)
+      end
     redirect_to post_path(@post)
   end
 
@@ -43,5 +45,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:title, :author, :content, :post_id)
   end
-  
+
 end
