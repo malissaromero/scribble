@@ -2,9 +2,9 @@
 
 <div>
   <p> Post Title: <%= @post.title %>
-  <% if @post.user_id == current_user["id"] %>
-  <%= link_to "(Edit)", edit_post_path(@post) %>
-  <% end %>
+    <% if @post.user_id == current_user["id"] %>
+    <%= link_to "(Edit)", edit_post_path(@post) %>
+    <% end %>
   </p>
   <p> Author: <%= @post.author %> </p>
   <p> <%= @post.content %> </p>

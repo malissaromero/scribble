@@ -16,21 +16,22 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.create(post_params)
-    @post.user_id = current_user["id"]
+    @post = Post.create!(post_params.merge({user_id: session[:user]["id"]}))
+    #@user = User.find(session[:user]["id"])
+    #@post = @user.post.create!(post_params)
     redirect_to post_path(@post)
   end
 
   def edit
     @post = Post.find(params[:id])
     if @post.user_id != current_user["id"]
-       redirect_to post_path(@post)
+      redirect_to post_path
     end
   end
 
   def update
     @post = Post.find(params[:id])
-    @post.user_id = current_user["id"]
+    @post.update(post_params)
     redirect_to posts_path(@post)
   end
 
